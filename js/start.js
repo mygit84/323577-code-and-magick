@@ -10,7 +10,7 @@ var BAR_WIDTH = 40;
 var BAR_HEIGHT = 150;
 var BAR_GAP = 50;
 var BASELINE = 240;
-var BAR_START = PADDIHG_LEFT + GAP * 3;
+var BAR_START = PADDIHG_LEFT + GAP * 3.5;
 
 var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
