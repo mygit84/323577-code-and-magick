@@ -18,18 +18,37 @@ var renderCloud = function (ctx, x, y, color) {
 };
 
 var getMaxElement = function (arr) {
-  var maxElement = arr[0];
+  var maxElements = arr[0];
 
   for (var i = 0; i < arr.length; i++) {
-    if (arr[i] > maxElement) {
-      maxElement = arr[i];
-    }
 
-    if (arr[i] === false) {
+    if (arr[i] >= 0) {
+      if (arr[i] > maxElements) {
+        maxElements = arr[i];
+      }
+    } else {
       return 0;
     }
   }
-  return maxElement;
+  return maxElements;
+};
+
+var getColor = function (ctx, playerName) {
+  var yourName = 'Вы';
+
+  if (playerName === yourName) {
+    ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+  } else {
+    ctx.fillStyle = 'hsl(240, ' + Math.floor(Math.random() * 100) + '%, 50%)';
+  }
+};
+
+var renderColumn = function (ctx, x, time, maxTime) {
+  var columnHeihtg = BAR_HEIGHT * time / maxTime;
+
+  ctx.fillRect(x, BASELINE, BAR_WIDTH, -columnHeihtg);
+  ctx.fillStyle = '#000';
+  ctx.fillText(Math.floor(time), x, (BASELINE - columnHeihtg - GAP * 2));
 };
 
 window.renderStatistics = function (ctx, names, times) {
@@ -45,20 +64,12 @@ window.renderStatistics = function (ctx, names, times) {
   var maxTime = getMaxElement(times);
 
   for (var i = 0; i < names.length; i++) {
+    var coordinateX = BAR_START + (BAR_WIDTH + BAR_GAP) * i;
 
     ctx.fillStyle = '#000';
-    ctx.fillText(names[i], BAR_START + (BAR_WIDTH + BAR_GAP) * i, BASELINE + GAP);
+    ctx.fillText(names[i], coordinateX, BASELINE + GAP);
 
-    var yourName = 'Вы';
-    var randomOpacity = Math.random();
-    if (names[i] === yourName) {
-      ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-    } else {
-      ctx.fillStyle = 'rgba(0, 0, 255,' + randomOpacity;
-    }
-
-    ctx.fillRect(BAR_START + (BAR_WIDTH + BAR_GAP) * i, BASELINE, BAR_WIDTH, -((BAR_HEIGHT * times[i]) / maxTime));
-    ctx.fillStyle = '#000';
-    ctx.fillText(Math.floor(times[i]), BAR_START + (BAR_WIDTH + BAR_GAP) * i, (BASELINE - (BAR_HEIGHT * times[i]) / maxTime) - GAP * 2);
+    getColor(ctx, names[i]);
+    renderColumn(ctx, coordinateX, times[i], maxTime);
   }
 };
