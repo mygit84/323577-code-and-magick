@@ -33,14 +33,17 @@ var getMaxElement = function (arr) {
   return maxElements;
 };
 
-var getColor = function (ctx, playerName) {
+var getColor = function (playerName) {
+  var colorBar;
   var yourName = 'Вы';
+  var saturation = Math.floor(Math.random() * 100);
 
   if (playerName === yourName) {
-    ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+    colorBar = 'rgba(255, 0, 0, 1)';
   } else {
-    ctx.fillStyle = 'hsl(240, ' + Math.floor(Math.random() * 100) + '%, 50%)';
+    colorBar = 'hsl(240, ' + saturation + '%, 50%)';
   }
+  return colorBar;
 };
 
 var renderColumn = function (ctx, x, time, maxTime) {
@@ -69,7 +72,7 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillStyle = '#000';
     ctx.fillText(names[i], coordinateX, BASELINE + GAP);
 
-    getColor(ctx, names[i]);
+    ctx.fillStyle = getColor(names[i]);
     renderColumn(ctx, coordinateX, times[i], maxTime);
   }
 };
