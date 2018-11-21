@@ -4,6 +4,12 @@ var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'К
 var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var WIZARD_COAT_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var WIZARD_EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
+var WIZARD_NUMBER = 4;
+var userDialog = document.querySelector('.setup');
+var similarListElement = userDialog.querySelector('.setup-similar-list');
+var similarWizardTemplate = document.querySelector('#similar-wizard-template')
+    .content
+    .querySelector('.setup-similar-item');
 
 var getRandomValue = function (arr) {
   var rand = Math.floor(Math.random() * arr.length);
@@ -13,7 +19,7 @@ var getRandomValue = function (arr) {
 var getWizard = function () {
   var wizards = [];
 
-  for (var i = 0; i < 4; i++) {
+  for (var i = 0; i < WIZARD_NUMBER; i++) {
     var newWizard = {
       name: getRandomValue(WIZARD_NAMES) + '\n' + getRandomValue(WIZARD_SURNAMES),
       coatColor: getRandomValue(WIZARD_COAT_COLOR),
@@ -24,14 +30,7 @@ var getWizard = function () {
   return wizards;
 };
 
-var userDialog = document.querySelector('.setup');
 userDialog.classList.remove('hidden');
-
-var similarListElement = userDialog.querySelector('.setup-similar-list');
-
-var similarWizardTemplate = document.querySelector('#similar-wizard-template')
-    .content
-    .querySelector('.setup-similar-item');
 
 var renderWizard = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
