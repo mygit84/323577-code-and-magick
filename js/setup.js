@@ -4,7 +4,7 @@ var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'К
 var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var WIZARD_COATS_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var WIZARD_EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
-var WIZARD_NUMBERS = 4;
+var WIZARD_NUMBER = 4;
 var userDialog = document.querySelector('.setup');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 var similarListElement = userDialog.querySelector('.setup-similar-list');
@@ -33,7 +33,7 @@ var getWizards = function () {
   var wizards = [];
   var newWizard = getWizard();
 
-  for (var i = 0; i < WIZARD_NUMBERS; i++) {
+  for (var i = 0; i < WIZARD_NUMBER; i++) {
     wizards.push(newWizard);
   }
   return wizards;
