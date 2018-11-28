@@ -68,6 +68,7 @@ var onPopupEscPress = function (evt) {
       closePopup();
     }
   }
+  return evt;
 };
 
 var openPopup = function () {
