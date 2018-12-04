@@ -22,12 +22,11 @@
 
     return wizardElement;
   };
-var getColor = function (callback) {
-
+  var getColor = function (callback) {
+  var col = callback();
+  console.log(col);
   wizard.eyesColor = callback;
-
-
-};
+  };
 
 
   window.getWizard = {

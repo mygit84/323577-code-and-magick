@@ -6,5 +6,7 @@
   return  window.utils.getEyesColor;
 
   };
-  window.getWizard.getColor(initWizard);
+window.getWizard.getColor(window.utils.getEyesColor);
+window.wizardSetting.onClick(window.utils.getEyesColor());
+
 })();
