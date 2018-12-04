@@ -76,3 +76,5 @@ window.renderStatistics = function (ctx, names, times) {
     renderColumn(ctx, coordinateX, times[i], maxTime);
   }
 };
+
+window.stat = renderStatistics;

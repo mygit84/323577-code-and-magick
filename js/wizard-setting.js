@@ -11,7 +11,7 @@
   });
 
   setupPlayer.querySelector('.wizard-eyes').addEventListener('click', function () {
-    var eyesColor = setupPlayer.querySelector('[name = "eyes-color"]').value = window.utils.randomValue(window.getWizard.WIZARD_EYES_COLORS);
+    var eyesColor = setupPlayer.querySelector('[name = "eyes-color"]').value = window.utils.getEyesColor();
     setupPlayer.querySelector('.wizard-eyes').style.fill = eyesColor;
   });
 
