@@ -38,17 +38,27 @@
     }
   };
 
-  window.setup.setOpen(openPopup);
-  window.setup.setClose(closePopup);
-
-  window.wizardSetting.onClickCoat(window.randomParam.coatColor);
-  window.wizardSetting.onClickEyes(window.randomParam.eyesColor);
-  window.wizardSetting.onClickFireball(window.randomParam.fireballColor);
-
   form.addEventListener('submit', function (evt) {
     window.backend.save(new FormData(form), closePopup, window.error.onError);
     evt.preventDefault();
   });
 
-  window.backend.load(window.wizards.onLoad, window.error.onError);
+  var setWizardsHandler = function () {
+    window.wizards.wizardObj.coat.addEventListener('click', function () {
+      window.debounce(window.wizards.coatColorValue());
+    });
+
+    window.wizards.wizardObj.eyes.addEventListener('click', function () {
+      window.debounce(window.wizards.eyesColorValue());
+    });
+
+    window.wizards.wizardObj.fireball.addEventListener('click', function () {
+      window.wizards.fireballColorValue();
+    });
+  };
+
+  window.setup.setOpen(openPopup);
+  window.setup.setClose(closePopup);
+  window.backend.load(window.wizards.show, window.error.onError);
+  setWizardsHandler();
 })();
